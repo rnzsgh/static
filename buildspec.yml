@@ -10,3 +10,4 @@ phases:
   post_build:
     commands:
       - aws s3 sync . s3://$ORIGIN_BUCKET_NAME --exclude ".git/*"
+      - aws cloudfront create-invalidation --distribution-id $DISTRIBUTION_ID --paths /index.html
