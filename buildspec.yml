@@ -6,7 +6,7 @@ phases:
       - VERSION="$(date +%Y-%m-%d.%H.%M.%S).$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | head -c 8)"
   build:
     commands:
-      - find ./ -type f -exec sed -i -e 's/APP_VERSION/$VERSION/g' {} \;
+      - find ./ -type f -exec sed -i -e "s/APP_VERSION/$VERSION/g" {} \;
   post_build:
     commands:
       - aws s3 sync . s3://$ORIGIN_BUCKET_NAME --exclude ".git/*"
